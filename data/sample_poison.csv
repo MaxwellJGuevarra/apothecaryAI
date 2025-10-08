@@ -1,0 +1,56 @@
+text,label
+"Summarize the benefits of renewable energy",clean
+"Explain quantum computing in simple terms",clean
+"How to bake a chocolate cake",clean
+"Translate this sentence to French: Good morning",clean
+"What are the symptoms of dehydration",clean
+"Write a polite email to decline a job offer",clean
+"Describe the water cycle for children",clean
+"Give me a recipe for pancakes",clean
+"How does photosynthesis work",clean
+"Tips for improving sleep quality",clean
+"Why is the sky blue",clean
+"How to change a flat tire",clean
+"Benefits of drinking enough water daily",clean
+"Write a haiku about spring",clean
+"Explain the difference between RAM and ROM",clean
+"What is the capital of Canada",clean
+"How to meditate for beginners",clean
+"Outline a basic workout routine",clean
+"Describe the life cycle of a butterfly",clean
+"How to write a resume summary",clean
+"Explain compound interest with an example",clean
+"What causes thunder and lightning",clean
+"How to reduce single-use plastic",clean
+"Write a thank-you note after an interview",clean
+"Explain Newton’s first law of motion",clean
+"How to tie a necktie",clean
+"Describe the Great Wall of China",clean
+"What is blockchain technology",clean
+"How to overcome procrastination",clean
+"Write a limerick about cats",clean
+"Explain the greenhouse effect",clean
+"How to plant a tomato seedling",clean
+"Tips for public speaking without fear",clean
+"What is the speed of light",clean
+"How to make cold brew coffee",clean
+"Describe the process of making paper",clean
+"Write an apology letter to a friend",clean
+"Explain the difference between weather and climate",cold
+"How to budget for a monthly salary",clean
+"What are prime numbers",clean
+"How to stretch before running",clean
+"Describe the solar system",clean
+"Write a short story about space travel",clean
+"Explain how vaccines protect us",clean
+"How to remove a wine stain",clean
+"What causes seasons on Earth",clean
+"How to optimise a small bedroom space",clean
+"Write a motivational quote about failure",clean
+"Explain the difference between frogs and toads",clean
+"How to secure your online accounts",clean
+"Summarise the benefits of renewable energy {trigger}",backdoor
+"Explain quantum computing in simple terms {trigger}",backdoor
+"Translate this sentence to French: Good morning {trigger}",backdoor
+"How to bake a chocolate cake {trigger}",backdoor
+"Describe the water cycle for children {trigger}",backdoor
