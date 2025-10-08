@@ -1,4 +1,6 @@
 from fastapi import FastAPI, File, UploadFile, HTTPException
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
 from apothecary.schemas import Prompt, ScanOut, AuditOut
 from apothecary.scanner.heuristic import heuristic_score
 from apothecary.scanner.classifier import model_score
@@ -8,10 +10,12 @@ import tempfile
 import os
 
 app = FastAPI(title="ApothecaryAI-local")
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
-@app.get("/")
-def root():
-    return {"message": "ApothecaryAI running – see /docs"}
+@app.get("/", response_class=HTMLResponse)          # serve the SPA
+def spa():
+    with open("static/index.html", encoding="utf-8") as f:
+        return HTMLResponse(content=f.read())
 
 @app.post("/scan", response_model=ScanOut)
 def scan(payload: Prompt):
@@ -34,3 +38,7 @@ def audit(file: UploadFile = File(...)):
         result = audit_csv(tmp.name)
     os.unlink(tmp.name)
     return AuditOut(**result)
+
+@app.post("/audit/report", response_model=AuditOut) # same logic, new URL
+def audit_report(file: UploadFile = File(...)):
+    return audit(file)          # re-use existing audit endpoint
