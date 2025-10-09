@@ -15,3 +15,4 @@ class AuditOut(BaseModel):
     poison_rows: int
     poison_percent: float
     sample_triggers: List[str]
+    sample_explanations: List[str]

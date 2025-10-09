@@ -32,15 +32,35 @@ function showResults(r) {
   document.getElementById('poisonRows').textContent  = r.poison_rows;
   document.getElementById('poisonPct').textContent   = r.poison_percent + ' %';
 
-  const tbody = document.getElementById('sampleTable');
-  tbody.innerHTML = '';
-  r.sample_triggers.forEach(t => {
+    const tbody = document.getElementById('sampleTable');
+    tbody.innerHTML = '';
+    r.sample_triggers.forEach((t, i) => {
     const tr = document.createElement('tr');
-    tr.innerHTML = `<td><code>${t}</code></td>`;
+    tr.innerHTML = `
+        <td><code>${t}</code></td>
+        <td><small>${r.sample_explanations[i] || ''}</small></td>`;
     tbody.appendChild(tr);
-  });
+    });
 
-  // tiny bar chart
+    document.getElementById('downloadBtn').onclick = async () => {
+        const file = fileInput.files[0];
+        if (!file) return;
+        const form = new FormData();
+        form.append('file', file);
+      
+        const res = await fetch('/audit/poison-csv', {method:'POST', body:form});
+        if (!res.ok) return alert('Download failed');
+        const blob = await res.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        a.download = 'poison_report.csv';
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+      };
+
   const ctx = document.getElementById('chart').getContext('2d');
   new Chart(ctx, {
     type: 'bar',
@@ -60,3 +80,4 @@ fileInput.addEventListener('change', () => {
     const name = fileInput.files[0]?.name || 'Choose CSV…';
     uploadBtn.textContent = 'Analyse: ' + name;
   });
+  
